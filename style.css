@@ -11,3 +11,9 @@ li {
   padding: 8px;
   border-bottom: 1px solid #eee;
 }
+
+.active-filter {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}

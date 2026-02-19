@@ -60,3 +60,15 @@ todoList.addEventListener('click', (e) => {
 
   renderTodos();
 })
+
+const filtersContainer = document.getElementById('filters');
+filtersContainer.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+
+  currentFilter = e.target.dataset.filter;
+
+  filterBtns.forEach(btn => btn.classList.remove('active-filter'));
+  e.target.classList.add('active-filter')
+
+  renderTodos();
+})
