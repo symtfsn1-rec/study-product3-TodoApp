@@ -22,15 +22,16 @@ addBtn.addEventListener('click', () => {
 
   todoInput.value = '';
 
-  renderTodo();
+  renderTodos();
 });
 
-function renderTodo() {
+function renderTodos() {
   todoList.innerHTML = '';
 
   todos.forEach((todo) => {
     const li = document.createElement('li');
     li.textContent = todo.text;
+    li.dataset.id = todo.id;todo
 
     if (todo.completed) {
       li.classList.add('completed');
@@ -39,3 +40,16 @@ function renderTodo() {
     todoList.appendChild(li);
   })
 }
+
+todoList.addEventListener('click', (e) => {
+  const clickedId = Number(e.target.dataset.id);
+
+  todos = todos.map((todo) => {
+    if (todo.id === clickedId) {
+      return {...todo, completed: !todo.completed};
+    }
+    return todo;
+  });
+
+  renderTodos();
+})
