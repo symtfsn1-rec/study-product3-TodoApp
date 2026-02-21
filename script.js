@@ -1,10 +1,17 @@
-let todos = [];
+const savedTodos = localStorage.getItem('myTodos');
+let todos = savedTodos ? JSON.parse(savedTodos) : [];
+
 let currentFilter = 'all';
+
+function saveToLocalStorage() {
+  localStorage.setItem('myTodos', JSON.stringify(todos));
+}
 
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
-const filterBtns = document.querySelectorAll('#filter button');
+const filterBtns = document.querySelectorAll('#filters button');
+
 
 addBtn.addEventListener('click', () => {
   const text = todoInput.value.trim();
@@ -20,7 +27,7 @@ addBtn.addEventListener('click', () => {
   };
 
   todos.push(newTodo);
-
+  saveToLocalStorage();
   todoInput.value = '';
 
   renderTodos();
@@ -68,7 +75,10 @@ filtersContainer.addEventListener('click', (e) => {
   currentFilter = e.target.dataset.filter;
 
   filterBtns.forEach(btn => btn.classList.remove('active-filter'));
-  e.target.classList.add('active-filter')
+  e.target.classList.add('active-filter');
 
+  saveToLocalStorage();
   renderTodos();
 })
+
+renderTodos();
