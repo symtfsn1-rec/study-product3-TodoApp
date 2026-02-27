@@ -1,19 +1,1 @@
 @charset "UTF-8";
-
-.completed {
-  text-decoration: line-through;
-  color: #888;
-}
-
-li {
-  cursor: pointer;
-  list-style: none;
-  padding: 8px;
-  border-bottom: 1px solid #eee;
-}
-
-.active-filter {
-  background-color: #333;
-  color: white;
-  font-weight: bold;
-}
