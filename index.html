@@ -8,6 +8,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h1>Todo管理（状態管理の練習）</h1>
+
+  <div>
+    <input type="text" id="todoInput" placeholder="新しいタスクを入力">
+    <button id="addBtn">追加</button>
+  </div>
+
+  <div id="filters">
+    <button data-filter="all">すべて</button>
+    <button data-filter="active">未完了</button>
+    <button data-filter="completed">完了済</button>
+  </div>
+
+  <ul id="todoList"></ul>
   
   <script src="script.js"></script>
 </body>
