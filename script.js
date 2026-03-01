@@ -27,6 +27,7 @@ const renderTodos = () => {
     const li = document.createElement('li');
 
     li.textContent = todo.text;
+    li.dataset.id = todo.id;
 
     if (todo.completed) {
       li.classList.add('completed');
@@ -36,3 +37,14 @@ const renderTodos = () => {
   });
 
 }
+
+todoList.addEventListener('click', (e) => {
+  const clickedId = Number(e.target.dataset.id);
+
+  todos = todos.map((todo) => {
+    if (todo.id === clickedId) {
+      return {...todo, completed: !todo.completed};
+    }
+    return todo;
+  });
+});
