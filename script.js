@@ -1,10 +1,14 @@
-let todos =[];
+const savedTodos = localStorage.getItem('myTodos');
+let todos = savedTodos ? JSON.parse(savedTodos) : [];
 let currentFilter = 'all';
 
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
 const filterBtns = document.querySelectorAll('#filters button');
+
+const saveToLocalStorage = () => localStorage.setItem('myTodos', JSON.stringify(todos));
+
 
 addBtn.addEventListener('click', () => {
   const text = todoInput.value.trim();
@@ -17,7 +21,7 @@ addBtn.addEventListener('click', () => {
   };
 
   todos.push(newTodo);
-
+  saveToLocalStorage();
   todoInput.value = '';
 
   renderTodos();
@@ -56,6 +60,8 @@ todoList.addEventListener('click', (e) => {
     }
     return todo;
   });
+
+  saveToLocalStorage();
   renderTodos();
 });
 
@@ -71,3 +77,5 @@ filtersContainer.addEventListener('click', (e) => {
 
   renderTodos();
 });
+
+renderTodos();
