@@ -1,4 +1,5 @@
 let todos =[];
+let currentFilter = 'all';
 
 const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
@@ -23,7 +24,13 @@ addBtn.addEventListener('click', () => {
 const renderTodos = () => {
   todoList.innerHTML = '';
 
-  todos.forEach((todo) => {
+  const filteredTodos = todos.filter((todo) => {
+    if (currentFilter === 'active') return !todo.completed;
+    if (currentFilter === 'completed') return todo.completed;
+    return true;
+  });
+
+  filteredTodos.forEach((todo) => {
     const li = document.createElement('li');
 
     li.textContent = todo.text;
